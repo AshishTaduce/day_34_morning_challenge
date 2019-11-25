@@ -25,33 +25,28 @@ int minRemoval(String word1, word2) {
     letters1.sort();
     List<String> letters2 = word2.split('').toList();
     letters2.sort();
-    List<String> bigger;
-    List<String> smaller;
-    smaller = letters1.length >= letters2.length ? letters2 : letters1;
-    bigger = letters1.length < letters2.length ? letters2 : letters1;
-    print('$bigger and $smaller');
-    int lenght = smaller.length;
+//    List<String> bigger;
+//    List<String> smaller;
+//    smaller = letters1.length >= letters2.length ? letters2 : letters1;
+//    bigger = letters1.length < letters2.length ? letters2 : letters1;
+//    print('$bigger and $smaller');
+//    int lenght = smaller.length;
     int addnt = 0;
 
-    for (int i = 0; i < lenght; i++) {
-        print('before remove $bigger and $smaller');
-        if(!bigger.contains(smaller.last)){
+    for (int i = 0; i < letters2.length ; i++) {
+        print('before remove $letters1 and $letters2');
+        if(letters1.contains(letters2[i])){
+          letters1.remove(letters2[i]);
+        }
+        else{
           addnt++;
         }
-        bigger.remove(smaller.last);
-
-        smaller.remove(smaller.last);
-        print('after remove $bigger and $smaller');
+        print('after remove $letters1 and $letters2');
       };
 
-
-    if (bigger.isEmpty && smaller.isEmpty) {
-      return 0;
-    }
-    else {
-      print('$bigger and $smaller');
-      return bigger.length + addnt;
-    }
+      print('before submission $letters1 and $letters2 ');
+      return letters1.length + addnt;
+    
   }
 }
 

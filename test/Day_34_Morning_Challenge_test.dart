@@ -16,9 +16,9 @@ void main() {
   });
 
   test('test for Farthest Hamming Anagrams', (){
-    expect(FarthestHamming('read', 'dear'), true);
-    expect(FarthestHamming('magenta', 'magnate'), 3);
-    expect(FarthestHamming('eleven', 'twelve'), 5);
+    expect(FarthestHamming('read', 'dear'), 2);
+    expect(FarthestHamming('magenta', 'magnate'), 4);
+    expect(FarthestHamming('eleven', 'twelve'), false);
   });
 }
 
