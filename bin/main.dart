@@ -27,26 +27,30 @@ int minRemoval(String word1, word2) {
     letters2.sort();
     List<String> bigger;
     List<String> smaller;
-
     smaller = letters1.length >= letters2.length ? letters2 : letters1;
     bigger = letters1.length < letters2.length ? letters2 : letters1;
     print('$bigger and $smaller');
+    int lenght = smaller.length;
+    int addnt = 0;
 
-    for (int i = 1; i <= smaller.length; i++) {
-      if(bigger.contains(smaller[smaller.length - i])){
+    for (int i = 0; i < lenght; i++) {
         print('before remove $bigger and $smaller');
-        bigger.removeWhere((String a)=>bigger.contains(smaller[smaller.length - i]));
-        removals++;
+        if(!bigger.contains(smaller.last)){
+          addnt++;
+        }
+        bigger.remove(smaller.last);
+
+        smaller.remove(smaller.last);
         print('after remove $bigger and $smaller');
       };
-    }
+
 
     if (bigger.isEmpty && smaller.isEmpty) {
       return 0;
     }
     else {
       print('$bigger and $smaller');
-      return removals + 1;
+      return bigger.length + addnt;
     }
   }
 }
@@ -74,7 +78,7 @@ int minRemoval(String word1, word2) {
 // - false if they aren't anagrams, or
 // - Their Hamming distance if they are anagrams with >=1 letter at the same index.
 
-Function2(String s1, String s2) {
+FarthestHamming(String s1, String s2) {
   if (isAnagram(s1, s2) && hammingDistance(s1, s2) == s1.length) {
     return true;
   } else if (!isAnagram(s1, s2)) {
