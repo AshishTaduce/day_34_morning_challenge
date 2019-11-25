@@ -20,8 +20,7 @@ int minRemoval(String word1, word2) {
   int removals = 0;
   if (isAnagram(word1, word2)) {
     return removals;
-  }
-  else {
+  } else {
     List<String> letters1 = word1.split('').toList();
     letters1.sort();
     List<String> letters2 = word2.split('').toList();
@@ -33,19 +32,21 @@ int minRemoval(String word1, word2) {
     bigger = letters1.length < letters2.length ? letters2 : letters1;
     print('$bigger and $smaller');
 
-    while (smaller.isNotEmpty) {
-        bigger.remove(smaller.last);
-        print('$bigger and $smaller');
-        if (smaller.isNotEmpty ) {
-           smaller.removeLast();
-        }
-
+    for (int i = 1; i <= smaller.length; i++) {
+      if(bigger.contains(smaller[smaller.length - i])){
+        print('before remove $bigger and $smaller');
+        bigger.removeWhere((String a)=>bigger.contains(smaller[smaller.length - i]));
+        removals++;
+        print('after remove $bigger and $smaller');
+      };
     }
+
     if (bigger.isEmpty && smaller.isEmpty) {
       return 0;
-    } else {
+    }
+    else {
       print('$bigger and $smaller');
-      return bigger.length + smaller.length ;
+      return removals + 1;
     }
   }
 }
@@ -74,32 +75,27 @@ int minRemoval(String word1, word2) {
 // - Their Hamming distance if they are anagrams with >=1 letter at the same index.
 
 Function2(String s1, String s2) {
-  if (isAnagram(s1, s2) && hammingDistance(s1, s2) == s1.length){
+  if (isAnagram(s1, s2) && hammingDistance(s1, s2) == s1.length) {
     return true;
-  }
-
-  else if (!isAnagram(s1, s2)) {
+  } else if (!isAnagram(s1, s2)) {
     return false;
-  }
-
-  else if(isAnagram(s1, s2) && hammingDistance(s1, s2) >= 1){
+  } else if (isAnagram(s1, s2) && hammingDistance(s1, s2) >= 1) {
     return hammingDistance(s1, s2);
   }
 }
 
 int hammingDistance(String word1, word2) {
   int count = 0;
-  if (isAnagram(word1, word2)){
+  if (isAnagram(word1, word2)) {
     List letter1 = word1.split('').toList();
     List letter2 = word2.split('').toList();
-    for(int i = 0; i < letter1.length; i ++){
-      if(letter1[i] == letter2[i]){
+    for (int i = 0; i < letter1.length; i++) {
+      if (letter1[i] == letter2[i]) {
         count++;
       }
     }
     return count;
-  }
-  else {
+  } else {
     return 0;
   }
 }
